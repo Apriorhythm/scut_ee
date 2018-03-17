@@ -3,3 +3,15 @@
 2009~2017的所有题目和答案
 
 答案为本人所写，不足之处甚多。
+
+环境
+---
+- 系统: Windows 10 x64
+- IDE: Visual Studio 2017 Express
+- Database: SQL Server 2008 Express
+
+
+每个年份的文件夹包含
+- 试题
+- 源码
+- 所有SQL语句
