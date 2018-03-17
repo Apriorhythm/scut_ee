@@ -1,0 +1,103 @@
+﻿
+/* 2016复试全部所需SQL */
+
+CREATE DATABASE [D2016];
+
+USE [D2016];
+
+/* ############## 建表 ############## */
+CREATE TABLE [Department]
+(
+	[deptNo] INT NOT NULL,
+	[deptName] VARCHAR(15) NOT NULL,
+	
+	CONSTRAINT pk_d PRIMARY KEY ([deptNo])
+);
+
+
+CREATE TABLE [CLASS]
+(
+	[classNo] VARCHAR(15) NOT NULL,
+	[specName] VARCHAR(15) NOT NULL,
+	[deptNo] INT NOT NULL,
+	[year] INT NOT NULL,
+	[num] INT  NOT NULL,
+	
+	CONSTRAINT pk_c PRIMARY KEY ([classNo]),
+	CONSTRAINT fk_d FOREIGN KEY ([deptNO])
+		REFERENCES [Department]([deptNO])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT year_c CHECK ([year]>0),
+	CONSTRAINT num_c CHECK ([num]>0)
+
+);
+
+
+CREATE TABLE [Student]
+(
+	[SNo] VARCHAR(15) NOT NULL,
+	[SName] VARCHAR(15) NOT NULL,
+	[Date] Date NOT NULL,
+	[classNo] VARCHAR(15) NOT NULL,
+	
+	CONSTRAINT pk_s PRIMARY KEY ([SNo]),
+	CONSTRAINT fk_c FOREIGN KEY ([classNo])
+		REFERENCES [CLASS]([classNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+);
+
+/* ############## 插入数据 ############## */
+INSERT INTO [Department] VALUES (1, '数学');
+INSERT INTO [Department] VALUES (2, '计算机');
+INSERT INTO [Department] VALUES (3, '化学');
+
+
+INSERT INTO [CLASS] VALUES ('101', '软件', 2, 2012, 25);
+INSERT INTO [CLASS] VALUES ('102', '微电子', 2, 2013, 28);
+INSERT INTO [CLASS] VALUES ('111', '无机化学', 3, 2012, 20);
+INSERT INTO [CLASS] VALUES ('112', '高分子化学', 3, 2013, 19);
+INSERT INTO [CLASS] VALUES ('121', '统计数学', 1, 2013, 11);
+
+
+INSERT INTO [Student] VALUES ('8101', '张三', '1996-7-9', '101');
+INSERT INTO [Student] VALUES ('8102', '钱四', '1996-2-6', '121');
+INSERT INTO [Student] VALUES ('8105', '李飞', '1994-1-21', '102');
+INSERT INTO [Student] VALUES ('8201', '张飞', '1996-2-25', '111');
+INSERT INTO [Student] VALUES ('8302', '周瑜', '1996-6-15', '112');
+INSERT INTO [Student] VALUES ('8203', '王亮', '1997-5-27', '111');
+INSERT INTO [Student] VALUES ('8305', '董庆', '1996-4-2', '102');
+INSERT INTO [Student] VALUES ('8409', '赵龙', '1995-6-1', '101');
+
+
+/* ############## 查询 ############## */
+
+SELECT * FROM [Department];
+SELECT * FROM [CLASS];
+SELECT * FROM [Student];
+
+
+SELECT d.[deptName], c.[specName], s.[SName]
+FROM [Department] d, [CLASS] c, [Student] s
+WHERE d.[deptNo]=c.[deptNo]
+	AND s.[classNo]=c.[classNo];
+
+
+SELECT d.[deptName], SUM(c.[num])
+FROM [Department] d, [CLASS] c
+WHERE d.[deptNo]=c.[deptNo]
+GROUP BY d.[deptName]
+
+
+SELECT t.y, COUNT(*)
+FROM
+(
+	SELECT  YEAR([Date]) AS y
+	FROM [Student]
+) AS t
+WHERE t.y=1996
+GROUP BY t.y;
+
+

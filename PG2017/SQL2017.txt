@@ -1,0 +1,94 @@
+
+CREATE DATABASE D2017;
+
+USE D2017;
+
+CREATE TABLE [Department]
+(
+	DeptNo INT NOT NULL,
+	DeptName VARCHAR(50) NOT NULL,
+	
+	CONSTRAINT pk_department PRIMARY KEY ([DeptNo])
+);
+
+CREATE TABLE [Group]
+(
+	[GroupNo] INT NOT NULL,
+	[GroupName] VARCHAR(50) NOT NULL,
+	[DeptNo] INT NOT NULL,
+	[Month] INT NOT NULL,
+	[Number] INT NOT NULL,
+	
+	CONSTRAINT pk_group PRIMARY KEY ([GroupNo]),
+	CONSTRAINT fk_deptno FOREIGN KEY ([DeptNo])
+		REFERENCES [Department]([DeptNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT month_c CHECK ([Month]<=12 AND [Month]>=1),
+	CONSTRAINT number_c CHECK ([Number]<=80)
+);
+
+
+CREATE TABLE [Patient]
+(
+	[PID] VARCHAR(20) NOT NULL,
+	[PName] VARCHAR(20) NOT NULL,
+	[Date] Date NOT NULL,
+	[GroupNo] INT NOT NULL,
+	
+	CONSTRAINT pk_patient PRIMARY KEY ([PID]),
+	CONSTRAINT fk_groupno FOREIGN KEY ([GroupNo])
+		REFERENCES [Group]([GroupNo])
+		ON DELETE CASCADE,
+);
+
+
+
+INSERT INTO [Department] VALUES (111, '内科');
+INSERT INTO [Department] VALUES (222, '外科');
+INSERT INTO [Department] VALUES (333, '骨科');
+
+
+INSERT INTO [Group] VALUES (11, '呼吸科', 111, 3, 68);
+INSERT INTO [Group] VALUES (12, '心内科', 111, 4, 43);
+INSERT INTO [Group] VALUES (13, '胸外科', 222, 3, 52);
+INSERT INTO [Group] VALUES (14, '骨外科', 333, 3, 28);
+INSERT INTO [Group] VALUES (15, '外伤科', 222, 4, 39);
+
+
+INSERT INTO [Patient] VALUES ('8801101', '李一', '1987-2-18', 11);
+INSERT INTO [Patient] VALUES ('8801102', '王二', '1995-5-12', 13);
+INSERT INTO [Patient] VALUES ('8801103', '张三', '1988-10-24', 14);
+INSERT INTO [Patient] VALUES ('8801104', '邓四', '1992-7-3', 12);
+INSERT INTO [Patient] VALUES ('8801105', '刘五', '1985-4-25', 14);
+INSERT INTO [Patient] VALUES ('8801106', '赵六', '1982-6-30', 11);
+INSERT INTO [Patient] VALUES ('8801107', '陈七', '1994-1-11', 12);
+INSERT INTO [Patient] VALUES ('8801108', '周八', '2000-3-13', 11);
+
+
+
+
+
+SELECT d.[DeptName], g.[GroupName], p.[PName]
+FROM [Department] d, [Group] g, [Patient] p
+WHERE d.DeptNo=g.[DeptNo]
+	AND g.[GroupNo]=p.[GroupNo];
+
+
+
+SELECT SUM(Number)
+FROM [Group]
+WHERE [Month]=3
+GROUP BY [Month];
+
+
+
+SELECT g.[GroupName]
+FROM [Group] g
+WHERE G.[GroupNo] NOT IN
+(
+	SELECT g1.[GroupNo]
+	FROM [Group] g1, [Group] g2
+	WHERE g1.[Number]<g2.[Number]
+)
+

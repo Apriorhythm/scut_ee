@@ -1,0 +1,107 @@
+
+
+
+
+CREATE TABLE Orders
+(
+	[OrderID] CHAR(5) NOT NULL,
+	[OrderName] VARCHAR(30) NOT NULL,
+	[OrderDate] SMALLDATETIME NOT NULL,
+	[RequireDate] SMALLDATETIME,
+	[Amount] Numeric(12,2) NOT NULL DEFAULT(0),
+	
+	CONSTRAINT pk_o PRIMARY KEY ([OrderID])
+);
+
+CREATE TABLE [Products]
+(
+	[ProductID] CHAR(5) NOT NULL,
+	[ProductName] VARCHAR(50) NOT NULL,
+	[SupplierName] VARCHAR(50) NOT NULL,
+	
+	CONSTRAINT pk_p PRIMARY KEY ([ProductID])
+);
+
+CREATE TABLE [OrderDetials]
+(
+	[OrderID] CHAR(5) NOT NULL,
+	[ProductID] CHAR(5) NOT NULL,
+	[UnitePrice] Numeric(8,2) NOT NULL,
+	[Quatity] SMALLINT NOT NULL,
+	
+	CONSTRAINT fk_orderID FOREIGN KEY ([OrderID])
+		REFERENCES [Orders]([OrderID])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fk_productID FOREIGN KEY ([ProductID])
+		REFERENCES [Products]([ProductID])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+
+INSERT INTO [Orders] VALUES ('00001', '洗衣机', '1991/1/12', '1991/2/12', 133);
+INSERT INTO [Orders] VALUES ('00002', '衣服', '1992/12/12', '1992/12/29', 329);
+INSERT INTO [Orders] VALUES ('00003', '书本', '2012/6/12', '2012/8/9', 1002);
+INSERT INTO [Orders] VALUES ('00004', '服装', '2013/12/12', '2013/12/28', 1203);
+
+INSERT INTO [Products] VALUES ('P0001', '洗发水', '百货');
+INSERT INTO [Products] VALUES ('P0002', '空调', '海尔');
+INSERT INTO [Products] VALUES ('P0003', '冰箱', '格力');
+INSERT INTO [Products] VALUES ('P0004', '彩电', '长虹');
+INSERT INTO [Products] VALUES ('P0005', '手机', '华为');
+INSERT INTO [Products] VALUES ('P0006', '笔记本电脑', '联想');
+
+INSERT INTO [OrderDetials] VALUES ('00001', 'P0003', 12, 90);
+INSERT INTO [OrderDetials] VALUES ('00002', 'P0003', 23, 19);
+INSERT INTO [OrderDetials] VALUES ('00002', 'P0005', 90, 8);
+INSERT INTO [OrderDetials] VALUES ('00003', 'P0001', 120, 10);
+INSERT INTO [OrderDetials] VALUES ('00003', 'P0004', 89, 77);
+INSERT INTO [OrderDetials] VALUES ('00004', 'P0002', 30, 120);
+
+
+
+
+SELECT * FROM [Orders];
+SELECT * FROM [Products];
+SELECT * FROM [OrderDetials];
+
+
+
+CREATE VIEW vw_statistics
+AS
+(
+	SELECT p.[ProductID], p.[ProductName], SUM(od.[Quatity]) AS SumQ, SUM(od.[UnitePrice]*od.[Quatity]) AS SumP
+	FROM [Products] p, [OrderDetials] od
+	WHERE p.[ProductID]=od.[ProductID]
+	GROUP BY p.[ProductID], p.[ProductName]
+);
+
+SELECT * FROM vw_statistics;
+
+
+
+
+SELECT ([SumP]/[SumQ]) AVGP, [SumQ] , MIN([UnitePrice]) AS MinP, MAX([UnitePrice]) AS MaxP
+FROM [vw_statistics], [OrderDetials] od
+WHERE [vw_statistics].[ProductId]=od.[ProductID]
+GROUP BY ([SumP]/[SumQ]), [SumQ];
+
+
+
+SELECT o.[OrderID], o.[OrderName], o.[Amount]
+FROM [Orders] o;
+
+
+
+
+		
+
+
+
+
+
+
+
+
+

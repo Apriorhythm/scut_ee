@@ -1,0 +1,104 @@
+﻿
+
+
+CREATE TABLE [Employee]
+(
+	[EmpNo] VARCHAR(20) NOT NULL,
+	[EmpName] VARCHAR(20) NOT NULL,
+	[Location] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT pk_e PRIMARY KEY ([EmpNo])
+);
+
+CREATE TABLE [Company]
+(
+	[CNo] VARCHAR(20) NOT NULL,
+	[CName] VARCHAR(20) NOT NULL,
+	[location] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT pk_c PRIMARY KEY ([CNo])
+);
+
+CREATE TABLE [Works]
+(
+	[EmpNo] VARCHAR(20) NOT NULL,
+	[CNo] VARCHAR(20) NOT NULL,
+	[Salary] INT NOT NULL,
+	
+	CONSTRAINT fk_e FOREIGN KEY ([EmpNo])
+		REFERENCES [Employee]([EmpNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fk_c FOREIGN KEY ([CNo])
+		REFERENCES [Company]([CNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT s_c CHECK ([Salary]>=0)
+);
+
+
+
+
+
+INSERT INTO [Employee] VALUES ('E01', '张三', '广州');
+INSERT INTO [Employee] VALUES ('E02', '李四', '上海');
+INSERT INTO [Employee] VALUES ('E03', '王五', '广州');
+INSERT INTO [Employee] VALUES ('E04', '赵六', '北京');
+INSERT INTO [Employee] VALUES ('E05', '陈七', '广州');
+INSERT INTO [Employee] VALUES ('E06', '周八', '长沙');
+INSERT INTO [Employee] VALUES ('E07', '罗九', '武汉');
+
+INSERT INTO [Company] VALUES ('C01', '阳光科技', '广州');
+INSERT INTO [Company] VALUES ('C02', '晨光科技', '上海');
+INSERT INTO [Company] VALUES ('C03', '曙光科技', '广州');
+
+INSERT INTO [Works] VALUES ('E01', 'C01', 2000);
+INSERT INTO [Works] VALUES ('E02', 'C01', 3000);
+INSERT INTO [Works] VALUES ('E02', 'C02', 3000);
+INSERT INTO [Works] VALUES ('E03', 'C03', 2000);
+INSERT INTO [Works] VALUES ('E04', 'C01', 4000);
+INSERT INTO [Works] VALUES ('E04', 'C02', 3000);
+INSERT INTO [Works] VALUES ('E05', 'C03', 2000);
+
+
+
+SELECT * FROM [Employee];
+SELECT * FROM [Company];
+SELECT * FROM [Works];
+
+
+
+SELECT c.[CName], c.[location]
+FROM [Employee] e, [Company] c, [Works] w
+WHERE e.[EmpNo]=w.[EmpNo]
+	AND c.[CNo]=w.[CNo]
+	AND e.[EmpName] LIKE '%六%';
+
+
+
+
+SELECT e.[EmpNo], e.[EmpName], SUM(w.[Salary]) AS sum_salary
+FROM [Employee] e, [Company] c, [Works] w
+WHERE e.[EmpNo]=w.[EmpNo]
+	AND c.[CNo]=w.[CNo]
+GROUP BY e.[EmpNo], e.[EmpName]
+HAVING COUNT(*)>=2;
+
+
+
+SELECT e.[EmpName], SUM(w.[Salary]) AS sum_salary
+FROM [Employee] e, [Company] c, [Works] w
+WHERE e.[EmpNo]=w.[EmpNo]
+	AND c.[CNo]=w.[CNo]
+	AND e.[EmpNo] IN
+	(
+		SELECT e2.[EmpNo]
+		FROM [Employee] e2, [Company] c2, [Works] w2
+		WHERE e2.[EmpNo]=w2.[EmpNo]
+			AND c2.[CNo]=w2.[CNo]
+			AND c2.[CName]='晨光科技'
+	)
+GROUP BY e.[EmpName]
+ORDER BY sum_salary DESC;
+
+

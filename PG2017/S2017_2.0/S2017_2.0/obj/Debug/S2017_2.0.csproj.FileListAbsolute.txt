@@ -1,0 +1,11 @@
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\bin\Debug\S2017_2.0.exe
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\bin\Debug\S2017_2.0.pdb
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2.0.csprojResolveAssemblyReference.cache
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2._0.Form1.resources
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2._0.Properties.Resources.resources
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2.0.csproj.GenerateResource.cache
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2.0.csproj.CoreCompileInputs.cache
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2.0.exe
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2.0.pdb
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2._0.PatientEdit.resources
+C:\Users\aspha\source\repos\S2017_2.0\S2017_2.0\obj\Debug\S2017_2._0.GroupEdit.resources

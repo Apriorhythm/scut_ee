@@ -1,0 +1,15 @@
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\bin\Debug\S2011_1.0.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\bin\Debug\S2011_1.0.pdb
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1.0.csprojResolveAssemblyReference.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.Form1.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.Properties.Resources.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1.0.csproj.GenerateResource.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1.0.csproj.CoreCompileInputs.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1.0.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1.0.pdb
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.RootMainForm.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.BusEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.DriverEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.BuslineEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.TimetableEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2011_1.0\S2011_1.0\obj\Debug\S2011_1._0.DriverMainForm.resources

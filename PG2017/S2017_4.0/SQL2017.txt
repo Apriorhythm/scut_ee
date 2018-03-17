@@ -1,0 +1,124 @@
+/* 华南理工2017计算机复试
+ * 所有SQL语句
+ */
+
+/* #################### 建表 #################### */
+CREATE DATABASE [D2017];
+USE [D2017];
+
+CREATE TABLE [Department]
+(
+	[DeptNo] VARCHAR(20) NOT NULL,
+	[DeptName] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT pk_d PRIMARY KEY ([DeptNo])
+);
+
+CREATE TABLE [Group]
+(
+	[GroupNo] INT NOT NULL,
+	[GroupName] VARCHAR(20) NOT NULL,
+	[DeptNo] VARCHAR(20) NOT NULL,
+	[Month] INT NOT NULL,
+	[Number] INT NOT NULL,
+	
+	CONSTRAINT pk_g PRIMARY KEY ([GroupNo]),
+	CONSTRAINT fk_d FOREIGN KEY ([DeptNO])
+		REFERENCES [Department]([DeptNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT month_c CHECK ([Month]>=1 AND [Month]<=12),
+	CONSTRAINT number_c CHECK ([Number]>=0 AND [Number]<=80)
+);
+
+CREATE TABLE [Patient]
+(
+	[PID] VARCHAR(20) NOT NULL,
+	[PName] VARCHAR(20) NOT NULL,
+	[Date] DATE NOT NULL,
+	[GroupNo] INT NOT NULL,
+	
+	CONSTRAINT pk_p PRIMARY KEY ([PID]),
+	CONSTRAINT fk_g FOREIGN KEY ([GroupNo])
+		REFERENCES [Group]([GroupNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+/* #################### 插入数据 #################### */
+INSERT INTO [Department] VALUES ('111', '内科');
+INSERT INTO [Department] VALUES ('222', '外科');
+INSERT INTO [Department] VALUES ('333', '中医科');
+
+
+
+INSERT INTO [Group] VALUES (11, '心内科', '111', 3, 32);
+INSERT INTO [Group] VALUES (12, '呼吸内科', '111', 4, 45);
+INSERT INTO [Group] VALUES (13, '中医保健科', '333', 3, 68);
+INSERT INTO [Group] VALUES (14, '骨科', '222', 4, 28);
+INSERT INTO [Group] VALUES (15, '心外科', '222', 4, 56);
+
+INSERT INTO [Patient] VALUES ('880101', '李一', '1980-6-1', 11);
+INSERT INTO [Patient] VALUES ('880102', '王二', '1978-2-3', 15);
+INSERT INTO [Patient] VALUES ('880103', '张三', '1969-11-2', 13);
+INSERT INTO [Patient] VALUES ('880104', '刘四', '1975-7-20', 13);
+INSERT INTO [Patient] VALUES ('880105', '陈五', '1986-5-16', 14);
+INSERT INTO [Patient] VALUES ('880106', '杨六', '1998-4-23', 13);
+INSERT INTO [Patient] VALUES ('880107', '赵七', '2000-3-1', 12);
+INSERT INTO [Patient] VALUES ('880108', '周八', '1992-7-5', 11);
+
+
+/* #################### 查询 #################### */
+SELECT * FROM [Patient];
+SELECT * FROM [Group];
+SELECT * FROM [Department];
+
+
+/* 病人组合查询 */
+SELECT d.[DeptName], g.[GroupName], p.[PName]
+FROM [Department] d, [Group] g, [Patient] p
+WHERE d.[DeptNo]=g.[DeptNo]
+	AND g.[GroupNo]=p.[GroupNo]
+	AND d.[DeptName]='中医科'
+	AND g.[GroupName]='中医保健科'
+	AND p.[PName] LIKE '%三%'
+ORDER BY d.[DeptName] DESC, g.[GroupName] ASC, p.[PName] DESC;
+
+
+/* 统计大科室总病人数 */
+SELECT d.[DeptName], SUM(g.[Number])
+FROM [Department] d, [Group] g
+WHERE d.[DeptNo]=g.[DeptNo]
+GROUP BY d.[DeptName];
+
+
+/* 按照月份统计小科室人数 */
+SELECT SUM([Number])
+FROM [Group]
+WHERE [Month]=3;
+
+
+/* 查询人数最多和最少的小科室 */
+SELECT *
+FROM [Group]
+WHERE [GroupNo] NOT IN
+(
+	SELECT g1.[GroupNo]
+	FROM [Group] g1, [Group] g2
+	WHERE g1.[Number]<g2.[Number]
+)
+UNION
+SELECT *
+FROM [Group]
+WHERE [GroupNo] NOT IN
+(
+	SELECT g1.[GroupNo]
+	FROM [Group] g1, [Group] g2
+	WHERE g1.[Number]>g2.[Number]
+);
+
+
+
+
+
+

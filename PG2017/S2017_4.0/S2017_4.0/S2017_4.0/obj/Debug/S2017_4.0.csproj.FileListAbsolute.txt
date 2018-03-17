@@ -1,0 +1,11 @@
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\bin\Debug\S2017_4.0.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\bin\Debug\S2017_4.0.pdb
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4.0.csprojResolveAssemblyReference.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4._0.Form1.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4._0.Properties.Resources.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4.0.csproj.GenerateResource.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4.0.csproj.CoreCompileInputs.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4.0.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4.0.pdb
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4._0.PatientEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2017_4.0\S2017_4.0\obj\Debug\S2017_4._0.GroupEdit.resources

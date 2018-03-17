@@ -1,0 +1,10 @@
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.csprojResolveAssemblyReference.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.Form1.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.Properties.Resources.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.TeacherEdit.resources
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.csproj.GenerateResource.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.csproj.CoreCompileInputs.cache
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\bin\Debug\S2013.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\bin\Debug\S2013.pdb
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.exe
+C:\Users\Apriorhythm\Desktop\VS_Source\S2013\S2013\obj\Debug\S2013.pdb

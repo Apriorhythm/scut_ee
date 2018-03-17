@@ -1,0 +1,112 @@
+
+/* ############### 建数据库 ############### */
+CREATE DATABASE [D2013];
+USE [D2013];
+
+/* ################# 建表 ################# */
+
+CREATE TABLE [TEACHERS]
+(
+	[TNo] VARCHAR(20) NOT NULL,
+	[TName] VARCHAR(20) NOT NULL,
+	[Gender] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT pk_t PRIMARY KEY([TNo]),
+	CONSTRAINT g_c CHECK([Gender] IN ('男', '女'))
+);
+
+CREATE TABLE [COURSES]
+(
+	[CNo] VARCHAR(20) NOT NULL,
+	[CName] VARCHAR(20) NOT NULL,
+	[Duration] INT NOT NULL,
+	
+	CONSTRAINT pk_c PRIMARY KEY([CNo]),
+	CONSTRAINT d_c CHECK([Duration]>=0)
+);
+
+CREATE TABLE [WORKS]
+(
+	[TNo] VARCHAR(20) NOT NULL,
+	[CNo] VARCHAR(20) NOT NULL,
+	[Year] INT NOT NULL,
+	[Term] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT fk_t FOREIGN KEY([TNo])
+		REFERENCES [TEACHERS]([TNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fk_c FOREIGN KEY([CNo])
+		REFERENCES [COURSES]([CNo])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT y_c CHECK([Year]>0),
+	CONSTRAINT t_c CHECK([Term] IN ('春', '秋'))
+);
+
+/* ################# 填充数据 ################# */
+
+INSERT INTO [TEACHERS] VALUES ('T01', '张三', '男');
+INSERT INTO [TEACHERS] VALUES ('T02', '李四', '女');
+INSERT INTO [TEACHERS] VALUES ('T03', '王五', '男');
+INSERT INTO [TEACHERS] VALUES ('T04', '赵六', '女');
+
+INSERT INTO [COURSES] VALUES ('C01', '数据结构', 64);
+INSERT INTO [COURSES] VALUES ('C02', '操作系统', 64);
+INSERT INTO [COURSES] VALUES ('C03', '网络原理', 48);
+INSERT INTO [COURSES] VALUES ('C04', '数据库', 48);
+
+INSERT INTO [WORKS] VALUES ('T01', 'C01', 2010, '春');
+INSERT INTO [WORKS] VALUES ('T01', 'C02', 2010, '秋');
+INSERT INTO [WORKS] VALUES ('T02', 'C01', 2011, '春');
+INSERT INTO [WORKS] VALUES ('T03', 'C01', 2011, '秋');
+INSERT INTO [WORKS] VALUES ('T04', 'C02', 2011, '春');
+INSERT INTO [WORKS] VALUES ('T04', 'C03', 2010, '春');
+INSERT INTO [WORKS] VALUES ('T04', 'C04', 2012, '秋');
+
+
+
+/* ################# 查询 ################# */
+
+SELECT * FROM [TEACHERS];
+SELECT * FROM [COURSES];
+SELECT * FROM [WORKS];
+
+
+SELECT t.[TNo], t.[TName], c.[CName]
+FROM [TEACHERS] t, [COURSES] c, [WORKS] w
+WHERE t.[TNo]=w.[TNo]
+	AND c.[CNo]=w.[CNo]
+	AND t.[TNo]='T01';
+	
+
+SELECT t.[TNo], t.[TName], c.[CName],c.[Duration], w.[Year]
+FROM [TEACHERS] t, [COURSES] c, [WORKS] w
+WHERE t.[TNo]=w.[TNo]
+	AND c.[CNo]=w.[CNo]
+	AND w.[Year]=2010;
+
+
+SELECT t.[TName], c.[CName]
+FROM [TEACHERS] t, [COURSES] c, [WORKS] w
+WHERE t.[TNo]=w.[TNo]
+	AND c.[CNo]=w.[CNo]
+	AND t.[TNo] IN
+	(
+		SELECT [TNo] AS TNo
+		FROM [WORKS]
+		GROUP BY [TNo]
+		HAVING COUNT(*)>=2
+	);
+	
+	
+	
+	
+	
+
+
+
+
+
+
+

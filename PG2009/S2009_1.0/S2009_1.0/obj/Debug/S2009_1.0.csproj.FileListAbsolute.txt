@@ -1,0 +1,10 @@
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1.0.csprojResolveAssemblyReference.cache
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1._0.Form1.resources
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1._0.ProductEdit.resources
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1._0.Properties.Resources.resources
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1.0.csproj.GenerateResource.cache
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1.0.csproj.CoreCompileInputs.cache
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\bin\Debug\S2009_1.0.exe
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\bin\Debug\S2009_1.0.pdb
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1.0.exe
+c:\users\apriorhythm\Desktop\VS_Source\S2009_1.0\S2009_1.0\obj\Debug\S2009_1.0.pdb

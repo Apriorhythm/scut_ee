@@ -1,0 +1,123 @@
+
+
+
+
+CREATE TABLE [EMPLOYEE]
+(
+	[EmpNo] VARCHAR(20) NOT NULL,
+	[EmpName] VARCHAR(20) NOT NULL,
+	[EmpSex] VARCHAR(5),
+	[EmpAge] INT NOT NULL,
+	
+	CONSTRAINT pk_empno PRIMARY KEY ([EmpNo]),
+	CONSTRAINT age_c CHECK ([EmpAge]>0),
+	CONSTRAINT empsex_c CHECK ([EmpSex] IN ('男', '女'))
+);
+
+
+CREATE TABLE [COMPANY]
+(
+	[CmpNo] VARCHAR(20) NOT NULL,
+	[CmpName] VARCHAR(20) NOT NULL,
+	
+	CONSTRAINT pk_cmpno PRIMARY KEY ([CmpNo])
+);
+
+
+CREATE TABLE [WORKS]
+(
+	[EmpNo] VARCHAR(20) NOT NULL,
+	[CmpNo] VARCHAR(20) NOT NULL,
+	[Salary] INT,
+	
+	CONSTRAINT fk_empno FOREIGN KEY ([EmpNo]) REFERENCES [EMPLOYEE]([EmpNo]),
+	CONSTRAINT fk_cmpno FOREIGN KEY ([CmpNo]) REFERENCES [COMPANY]([CmpNo]),
+	CONSTRAINT salary_c CHECK ([Salary]>0)
+);
+
+
+/* #################################################################### */
+INSERT INTO [EMPLOYEE] VALUES ('E01', '张三', '女', 32);
+INSERT INTO [EMPLOYEE] VALUES ('E02', '李四', '男', 28);
+INSERT INTO [EMPLOYEE] VALUES ('E03', '王五', '女', 42);
+INSERT INTO [EMPLOYEE] VALUES ('E04', '赵六', '男', 37);
+INSERT INTO [EMPLOYEE] VALUES ('E05', '陈七', '男', 51);
+
+
+
+INSERT INTO [COMPANY] VALUES ('C01', '阳光科技');
+INSERT INTO [COMPANY] VALUES ('C02', '晨光科技');
+INSERT INTO [COMPANY] VALUES ('C03', '未来科技');
+
+
+INSERT INTO [WORKS] VALUES ('E01', 'C01', 3000);
+INSERT INTO [WORKS] VALUES ('E01', 'C02', 4000);
+INSERT INTO [WORKS] VALUES ('E02', 'C02', 5000);
+INSERT INTO [WORKS] VALUES ('E02', 'C03', 2500);
+INSERT INTO [WORKS] VALUES ('E03', 'C01', 3500);
+INSERT INTO [WORKS] VALUES ('E04', 'C02', 3000);
+INSERT INTO [WORKS] VALUES ('E05', 'C03', 2000);
+
+
+
+
+
+
+######################################################
+
+根据员工号或员工名查找员工所在的公司名和工资
+
+
+统计年龄至少为40岁员工的总工资，工资从大到小
+
+
+查询至少具有两份工作的员工其姓名和公司名
+
+
+
+
+
+
+统计年龄至少为40岁员工的总工资，工资从大到小
+SELECT T1.[EmpNo], T1.[EmpName], T1.[EmpAge], T1.[EmpSex], T2.[SumSalary]
+FROM 
+(
+	SELECT *
+	FROM [EMPLOYEE]
+	WHERE [EmpAge]>=40
+) AS T1
+JOIN
+(
+	SELECT [EmpNo] AS [EmpNo], SUM(Salary) AS SumSalary
+	FROM [WORKS]
+	GROUP BY [WORKS].[EmpNo]
+) AS T2 
+ON T1.[EmpNo]=T2.[EmpNo]
+ORDER BY T2.[SumSalary] DESC
+
+
+
+
+
+查询至少具有两份工作的员工其姓名和公司名
+SELECT a.[EmpName], b.[CmpName]
+FROM [EMPLOYEE] a, [COMPANY] b, [WORKS] c
+WHERE a.[EmpNo] IN
+	(
+		SELECT [EmpNo]
+		FROM [WORKS]
+		GROUP BY [EmpNo]
+		HAVING COUNT(*)>=2
+	)
+	AND a.[EmpNo]=c.[EmpNo]
+	AND b.[CmpNo]=c.[CmpNo]
+
+
+
+
+
+
+
+
+
+
