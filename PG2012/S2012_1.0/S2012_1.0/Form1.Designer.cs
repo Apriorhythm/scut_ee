@@ -35,19 +35,19 @@
             this.AddBtn = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.EmpNameSearchBtn = new System.Windows.Forms.Button();
+            this.EmpNameText = new System.Windows.Forms.TextBox();
             this.listView2 = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listView4 = new System.Windows.Forms.ListView();
-            this.EmpNameText = new System.Windows.Forms.TextBox();
-            this.EmpNameSearchBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CNameSearchBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CNameSearchComb = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.CNameSearchComb = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CNameSearchBtn = new System.Windows.Forms.Button();
+            this.listView4 = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -137,6 +137,33 @@
             this.tabPage2.Text = "要求2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(191, 360);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "员工姓名";
+            // 
+            // EmpNameSearchBtn
+            // 
+            this.EmpNameSearchBtn.Location = new System.Drawing.Point(480, 355);
+            this.EmpNameSearchBtn.Name = "EmpNameSearchBtn";
+            this.EmpNameSearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.EmpNameSearchBtn.TabIndex = 2;
+            this.EmpNameSearchBtn.Text = "查找";
+            this.EmpNameSearchBtn.UseVisualStyleBackColor = true;
+            this.EmpNameSearchBtn.Click += new System.EventHandler(this.EmpNameSearchBtn_Click);
+            // 
+            // EmpNameText
+            // 
+            this.EmpNameText.Location = new System.Drawing.Point(289, 357);
+            this.EmpNameText.MaxLength = 10;
+            this.EmpNameText.Name = "EmpNameText";
+            this.EmpNameText.Size = new System.Drawing.Size(155, 21);
+            this.EmpNameText.TabIndex = 1;
+            // 
             // listView2
             // 
             this.listView2.FullRowSelect = true;
@@ -159,6 +186,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "要求3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(191, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "统计具有2份以上工作的员工总工资";
             // 
             // listView3
             // 
@@ -186,6 +222,43 @@
             this.tabPage4.Text = "要求4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 12);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "根据公司名查询员工总工资";
+            // 
+            // CNameSearchComb
+            // 
+            this.CNameSearchComb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CNameSearchComb.FormattingEnabled = true;
+            this.CNameSearchComb.Location = new System.Drawing.Point(298, 364);
+            this.CNameSearchComb.Name = "CNameSearchComb";
+            this.CNameSearchComb.Size = new System.Drawing.Size(121, 20);
+            this.CNameSearchComb.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(181, 367);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "公司名";
+            // 
+            // CNameSearchBtn
+            // 
+            this.CNameSearchBtn.Location = new System.Drawing.Point(486, 362);
+            this.CNameSearchBtn.Name = "CNameSearchBtn";
+            this.CNameSearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.CNameSearchBtn.TabIndex = 2;
+            this.CNameSearchBtn.Text = "查询";
+            this.CNameSearchBtn.UseVisualStyleBackColor = true;
+            this.CNameSearchBtn.Click += new System.EventHandler(this.CNameSearchBtn_Click);
+            // 
             // listView4
             // 
             this.listView4.FullRowSelect = true;
@@ -198,79 +271,6 @@
             this.listView4.UseCompatibleStateImageBehavior = false;
             this.listView4.View = System.Windows.Forms.View.Details;
             // 
-            // EmpNameText
-            // 
-            this.EmpNameText.Location = new System.Drawing.Point(289, 357);
-            this.EmpNameText.MaxLength = 10;
-            this.EmpNameText.Name = "EmpNameText";
-            this.EmpNameText.Size = new System.Drawing.Size(155, 21);
-            this.EmpNameText.TabIndex = 1;
-            // 
-            // EmpNameSearchBtn
-            // 
-            this.EmpNameSearchBtn.Location = new System.Drawing.Point(480, 355);
-            this.EmpNameSearchBtn.Name = "EmpNameSearchBtn";
-            this.EmpNameSearchBtn.Size = new System.Drawing.Size(75, 23);
-            this.EmpNameSearchBtn.TabIndex = 2;
-            this.EmpNameSearchBtn.Text = "查找";
-            this.EmpNameSearchBtn.UseVisualStyleBackColor = true;
-            this.EmpNameSearchBtn.Click += new System.EventHandler(this.EmpNameSearchBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 360);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "员工姓名";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "统计具有2份以上工作的员工总工资";
-            // 
-            // CNameSearchBtn
-            // 
-            this.CNameSearchBtn.Location = new System.Drawing.Point(486, 362);
-            this.CNameSearchBtn.Name = "CNameSearchBtn";
-            this.CNameSearchBtn.Size = new System.Drawing.Size(75, 23);
-            this.CNameSearchBtn.TabIndex = 2;
-            this.CNameSearchBtn.Text = "查询";
-            this.CNameSearchBtn.UseVisualStyleBackColor = true;
-            this.CNameSearchBtn.Click += new System.EventHandler(this.CNameSearchBtn_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(181, 367);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "公司名";
-            // 
-            // CNameSearchComb
-            // 
-            this.CNameSearchComb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CNameSearchComb.FormattingEnabled = true;
-            this.CNameSearchComb.Location = new System.Drawing.Point(298, 364);
-            this.CNameSearchComb.Name = "CNameSearchComb";
-            this.CNameSearchComb.Size = new System.Drawing.Size(121, 20);
-            this.CNameSearchComb.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 12);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "根据公司名查询员工总工资";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -282,7 +282,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "华南理工计算机复试_梁庭昌";
+            this.Text = "华南理工计算机复试";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
