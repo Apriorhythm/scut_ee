@@ -54,7 +54,8 @@ namespace S2016_2._0
         public void SetBySQL(String sql, SqlParameter[] sqlParams)
         {
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddRange(sqlParams);
+            if (null != sqlParams)
+                command.Parameters.AddRange(sqlParams);
 
             command.ExecuteNonQuery();
         }
